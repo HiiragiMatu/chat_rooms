@@ -1,0 +1,17 @@
+{
+  "name": "chat_mongodb",
+  "version": "1.0.0",
+  "description": "Simple Chat App using socket",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Matsu Chen",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "mongodb": "^3.6.0",
+    "socket.io": "^2.3.0"
+  }
+}
