@@ -1,0 +1,30 @@
+doctype html
+html  
+  head
+    style
+      include ../public/css/style.css
+    script(src="../../socket.io/socket.io.js")
+    script(src="http://code.jquery.com/jquery-1.10.1.min.js")
+  body
+    ul#messages
+    form#chatForm(action='/', method='POST')
+      input#txt(autocomplete='off', autofocus='on', oninput='isTypeing()', placehoder='Type')
+      button send
+    script.
+      let socket = io.connect('http://localhost:3000')
+      $('form').submit(function(e){
+        e.preventDefault();
+        socket.emit('chat_message', $('#txt').val());
+        $('#txt').val('');
+        return false;
+      });
+
+      let username = prompt('Name');
+      socket.emit('username', username);
+      socket.on('chat_message', function(msg){
+        $('#messages').append($('<li>').html(msg));
+      });
+      socket.on('is_online', function(username){
+        $('#messages').append($('<li>').html(username));
+      });
+
